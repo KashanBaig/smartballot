@@ -31,8 +31,23 @@ class HomeController extends Controller
         return view('biometric')->with($data);
     }
     public function getDetails(){
-        return view('getDetails');
+        $data = array(
+            'header' => 'SMART BALLOT SYSTEM'
+        );
+        return view('getDetails')->with($data);
     }
 
+    public function NABallot(){
+        $data = array(
+            'header' => 'E-BALLOT PAPER'
+        );
+        return view('NABallot')->with($data);
+    }
     
+    public function PSBallot(){
+        $data = array(
+            'header' => 'E-BALLOT PAPER'
+        );
+        return view('PSBallot')->with($data);
+    }
 }

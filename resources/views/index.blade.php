@@ -1,8 +1,6 @@
 @extends('layout.main')
 
 @section('content')
-    
-
     <!-- **Main Section** -->
     <section id="main">
         

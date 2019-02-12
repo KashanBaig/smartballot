@@ -21,3 +21,7 @@ Route::post('/cnic', 'HomeController@postCnic');
 Route::get('/bio', 'HomeController@biometric');
 
 Route::get('/details', 'HomeController@getDetails');
+
+Route::get('/NABallot', 'HomeController@NABallot');
+
+Route::get('/PSBallot', 'HomeController@PSBallot');
