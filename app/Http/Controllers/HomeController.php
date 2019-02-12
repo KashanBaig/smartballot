@@ -38,9 +38,27 @@ class HomeController extends Controller
     }
 
     public function NABallot(){
+
         $data = array(
-            'header' => 'E-BALLOT PAPER'
-        );
+            'header' => 'E-BALLOT PAPER',
+            'rows' => array(
+                array(
+                    'flag' => 'pti.jpg',
+                    'sign' => 'bat.jpg',
+                    'title' => 'پاکستان تحريک انصاف',
+                    'name' => 'cb1',
+                    'value' => '1'
+                ),
+                array(
+                    'flag' => 'pppp.jpg',
+                    'sign' => 'tier.jpg',
+                    'title' => 'پاکِستان پیپلز پارٹی‬‎',
+                    'name' => 'cb2',
+                    'value' => '2'
+                
+                )
+        ));
+
         return view('NABallot')->with($data);
     }
     

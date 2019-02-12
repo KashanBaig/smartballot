@@ -104,7 +104,7 @@
 
 	/*----*****---- << Sprite icons background >> ----*****----*/
 	
-	.bordered-box-content .icon span, .social-share a, blockquote span { background:url(icons-sprite.png) no-repeat; }
+	.bordered-box-content .icon span, .social-share a, blockquote span { background:url(images/icons-sprite.png) no-repeat; }
 	
 	/*----*****---- << Social Share >> ----*****----*/
 

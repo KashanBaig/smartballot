@@ -1,3 +1,5 @@
+@charset "utf-8";
+/* CSS Document */
 
 /*----*****---- << Responsive >> ----*****----*/
 
@@ -5,7 +7,49 @@
 	
     /* Note: Design for a width of 768px, Gutter: 30px, Unit: 32px */
 
-
+    @media only screen and (min-width:768px) and (max-width:959px) {
+		
+		.container { width:748px; }
+		
+		/*----*****---- << Header >> ----*****----*/
+		#main-nav ul li a { padding:0px 10px; font-size:14px; }
+		
+		/*----*****---- << Home >> ----*****----*/
+		.rounded-icon span { width:88px; height:88px; max-width:88px; max-height:88px; border-radius:88px; }		
+		.rounded-icon span.write-icon { background-position:-15px -15px; }
+		.rounded-icon span.clock-icon { background-position:-133px -15px; }
+		.rounded-icon span.pen-icon { background-position:-251px -15px; }
+		.rounded-icon span.mail-icon { background-position:-369px -15px; }	
+		.work-flow { background-position:135px 46px; }	
+		
+		/*----*****---- << About >> ----*****----*/		
+		.testimonial-carousel ul#testimonial-carousel li { width:366px; margin-right:14px; }
+		.testimonial-content-wrapper { width:59%; padding-left:26px; margin-left:5px; }
+		
+		/*----*****---- << Team >> ----*****----*/
+		.team-wrapper .rounded-image img { max-width:136px; max-height:136px; border-radius:136px; }		
+		.team-wrapper .rounded-image span { width:136px; height:136px; border-radius:136px; }
+		
+		/*----*****---- << Blog >> ----*****----*/
+		.blog-carousel ul#blog-carousel li { width:360px; margin-right:14px; }
+		.blog-entry .entry-details { width:52%; }
+		.blog-entry .entry-metadata .author, .blog-entry .entry-metadata .tags a { margin-bottom:5px; }
+		.blog-entry .entry-title h5 { font-size:19px; }
+		
+		/*----*****---- << Contact >> ----*****----*/
+		.newsletter-form input[type="email"] { width:52%; }
+		.dark-box { width:88%; }
+		
+		/*----*****---- << Main >> ----*****----*/
+		#primary { width:540px; margin-right:28px; }
+		#secondary { width:180px; }
+		
+		/*----*****---- << Widgets >> ----*****----*/
+		.widget.widget_recent_entries .entry-metadata { width:95%; }
+		.widget input[type="email"] { width:87.5%; } 
+		
+	}
+	
 
 	/*----*****---- << Mobile (Landscape) >> ----*****----*/	
 	
