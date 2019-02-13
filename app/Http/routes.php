@@ -25,3 +25,5 @@ Route::get('/details', 'HomeController@getDetails');
 Route::get('/NABallot', 'HomeController@NABallot');
 
 Route::get('/PSBallot', 'HomeController@PSBallot');
+
+Route::get('/logout', 'HomeController@logout');
