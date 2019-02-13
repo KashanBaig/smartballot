@@ -6,33 +6,49 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+// Models
+use App\Voter;
+
 class HomeController extends Controller
 {
     public function index(){
         $data = array(
-            'header' => 'SMART BALLOT SYSTEM'
+            'header' => 'SMART BALLOT SYSTEM',
+            'showHeader' => true
         );
         return view('index')->with($data);
     }
     public function getCnic(){
         $data = array(
-            'header' => 'SMART BALLOT SYSTEM'
+            'header' => 'SMART BALLOT SYSTEM',
+            'showHeader' => true
         );
         return view('getCnic')->with($data);
     }
-    public function postCnic(){
+    public function postCnic($cnicNum){
+
+        $voter = Voter::where('cnic', $cnicNum)->first();
+
+        if($voter){
+            return redirect()->action('HomeController@biometric');
+        }
+        else{
+            return redirect()->action('HomeController@getCnic');
+        }
         // return redirect()->action('HomeController@index');
-        return redirect()->route('biometric');
+        // return redirect()->route('biometric');
     }
     public function biometric(){
         $data = array(
-            'header' => 'BIOMETRIC AUTHENTICATION'
+            'header' => 'BIOMETRIC AUTHENTICATION',
+            'showHeader' => false
         );
         return view('biometric')->with($data);
     }
     public function getDetails(){
         $data = array(
-            'header' => 'SMART BALLOT SYSTEM'
+            'header' => 'SMART BALLOT SYSTEM',
+            'showHeader' => false
         );
         return view('getDetails')->with($data);
     }
@@ -41,6 +57,7 @@ class HomeController extends Controller
 
         $data = array(
             'header' => 'E-BALLOT PAPER',
+            'showHeader' => false,
             'rows' => array(
                 array(
                     'flag' => 'pti.jpg',
@@ -169,6 +186,7 @@ class HomeController extends Controller
     public function PSBallot(){
         $data = array(
             'header' => 'E-BALLOT PAPER',
+            'showHeader' => false,
             'rows' => array(
                 array(
                     'flag' => 'pti.jpg',
@@ -294,7 +312,8 @@ class HomeController extends Controller
     }
     public function logout(){
         $data = array(
-            'header' => 'SMART BALLOT SYSTEM'
+            'header' => 'SMART BALLOT SYSTEM',
+            'showHeader' => true
         );
         return view('logout')->with($data);
     }

@@ -12,12 +12,12 @@
          <div class="form-header">
              <div class="app-brand">ENTER CNIC NUMBER</div>
              </div>
-               <form action="{{url('cnic')}}" method="POST">
+               <form>
                  <div class="input-group">                    
-                   <input type="text" maxlength="13" onkeypress="return isNumberKey(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" placeholder="CNIC NUMBER" aria-describedby="basic-addon1" required>                           
+                   <input type="text" maxlength="13" id="cnic" onkeypress="return isNumberKey(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" placeholder="CNIC NUMBER" aria-describedby="basic-addon1" required>                           
                  </div>
                     <div class="text-center">
-                    <input type="submit" name="next" class="btn btn-success btn-submit" value="Next">
+                    <input type="button" onclick="postCnic()" name="next" class="btn btn-success btn-submit" value="Next">
                     </div>
                              
                 <center style="color: black">Back to, <a href="{{url('/')}}"> Home</a></center>
@@ -28,4 +28,12 @@
  </div>
  </div>
      </article><!-- **Home Content - End** -->
+
+     <script>
+       function postCnic(){
+          const cnicInput = document.querySelector('#cnic').value;
+          location.href = root + 'cnicPost/'+ cnicInput;
+       }
+
+     </script>
 @endsection

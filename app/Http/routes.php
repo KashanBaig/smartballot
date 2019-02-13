@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/cnic', 'HomeController@getCnic');
 
-Route::post('/cnic', 'HomeController@postCnic');
+Route::get('/cnicPost/{cnicNum}', 'HomeController@postCnic');
 
 Route::get('/bio', 'HomeController@biometric');
 

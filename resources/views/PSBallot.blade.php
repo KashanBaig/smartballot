@@ -147,9 +147,9 @@
 
   }
 
-  function goToLogout() {
-    location.href = './logout.html'
-  }
+  function goToPS() {
+      location.href = root + 'logout';
+    }
 
 </script>
     

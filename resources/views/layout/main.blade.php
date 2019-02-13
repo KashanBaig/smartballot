@@ -29,17 +29,25 @@
                } 
    
         </script>
+
+        <script>
+            const root = 'http://localhost/Smart_Ballot_System/public/';
+        </script>
     </head>
     <body>
     
       @yield('content');
-      <div id="header1">
-          <div class="container">
-              <div id="logo" style="float:right; ">
-              <a href="{{url('/')}}"> <img src="./assets/images/logo.png"/></a>
-              </div>
-          </div>
-      </div>
+
+      @if ($showHeader)
+        <div id="header1">
+            <div class="container">
+                <div id="logo" style="float:right; ">
+                <a href="{{url('/')}}"> <img src="./assets/images/logo.png"/></a>
+                </div>
+            </div>
+        </div>
+      @endif
+      
           
       <div id="header1">
           <div style="text-align: center; color: white; font-size: 30px; font-family: bold"></a>{{ $header }}</div>

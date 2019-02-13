@@ -15,7 +15,7 @@
                       <div style="text-align: center;"><img src="./assets/images/vote.jpg"></div>
                       <p style="text-align: center; color: grey; font-size: 30px">Smart Ballot System</p>
                       <div class="text-center">
-                            <a href="index.html"><input type="submit" name="login" class="btn btn-success btn-submit" value="LOGOUT"></a>
+                            <a onclick="goToHome()"><input type="submit" name="login" class="btn btn-success btn-submit" value="LOGOUT"></a>
                       </div>
                     </div>
                 </div>
@@ -23,4 +23,10 @@
         </div>
     </div>
     </article>
+
+    <script>
+      function goToHome(){
+        location.href = root;
+      }
+    </script>
 @endsection

@@ -146,8 +146,8 @@
 
     }
 
-    function goToPS() {
-      location.href = './PSBallot.html'
+    function goToPS(e) {
+      location.href = root + 'PSBallot';
     }
 
   </script>
