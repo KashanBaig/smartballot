@@ -25,18 +25,41 @@ class HomeController extends Controller
         );
         return view('getCnic')->with($data);
     }
-    public function postCnic($cnicNum){
+    public function postCnic(Request $request, $cnicNum){
 
-        $voter = Voter::where('cnic', $cnicNum)->first();
+        $voter = Voter::where('CNIC', $cnicNum)->first();
 
         if($voter){
+            
+            
+            
+            // Generating Session 
+            $userArr = array(
+            'cnic' => $voter['CNIC'],
+            'firstName' => $voter['FIRST_NAME'],
+            'lastName' => $voter['LAST_NAME'],
+            'fatherName' => $voter['FATHER_NAME'],
+            'address' => $voter['ADDRESS'],
+            'birthdate' => $voter['BIRTH_DATE'],
+            'age' => $voter['AGE'],
+            'city' => $voter['CITY'],
+            'country' => $voter['COUNTRY'],
+            'province' => $voter['PROVINCE'],
+            'gender' => $voter['GENDER'],
+            'naConst' => $voter['NA_CONSTITUENCY'],
+            'psConst' => $voter['PS_CONSTITUENCY'],
+            'voted' => $voter['VOTED'],
+            );
+
+            // Creating Session
+            $request->session()->put('user', $userArr);
+            
+            // redirection
             return redirect()->action('HomeController@biometric');
         }
         else{
             return redirect()->action('HomeController@getCnic');
         }
-        // return redirect()->action('HomeController@index');
-        // return redirect()->route('biometric');
     }
     public function biometric(){
         $data = array(
@@ -45,14 +68,21 @@ class HomeController extends Controller
         );
         return view('biometric')->with($data);
     }
-    public function getDetails(){
+    public function getDetails(Request $request){
+
+        $voter = $request->session()->get('user');
+
+        if(!$voter){
+            $voter = 'default';
+        }
+
         $data = array(
             'header' => 'SMART BALLOT SYSTEM',
-            'showHeader' => false
+            'showHeader' => false,
+            'voter'=> $voter
         );
         return view('getDetails')->with($data);
     }
-
     public function NABallot(){
 
         $data = array(
@@ -182,7 +212,6 @@ class HomeController extends Controller
 
         return view('NABallot')->with($data);
     }
-    
     public function PSBallot(){
         $data = array(
             'header' => 'E-BALLOT PAPER',
@@ -310,12 +339,15 @@ class HomeController extends Controller
         ));
         return view('PSBallot')->with($data);
     }
-    public function logout(){
+    public function logout(Request $request){
+
+        // Destroying the session
+        $request->session()->forget('user');
+
         $data = array(
             'header' => 'SMART BALLOT SYSTEM',
             'showHeader' => true
         );
         return view('logout')->with($data);
     }
-
 }

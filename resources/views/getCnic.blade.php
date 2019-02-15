@@ -32,6 +32,10 @@
      <script>
        function postCnic(){
           const cnicInput = document.querySelector('#cnic').value;
+          if(cnicInput === ''){
+            $.alert('Please Provide An Input To Start');
+            return false;
+          }
           location.href = root + 'cnicPost/'+ cnicInput;
        }
 
