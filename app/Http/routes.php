@@ -31,7 +31,17 @@ Route::get('/logout', 'HomeController@logout');
 Route::get('/admin', 'AdminController@login');
 
 Route::get('/admin/blank', 'AdminController@blank');
-// Route::get('/admin/voters', 'AdminController@getVoters');
-// Route::get('/admin/voter/add', 'AdminController@addVoter');
+
+Route::get('/admin/result', 'AdminController@result');
+
+Route::get('/admin/userProfile', 'AdminController@profile');
+
+Route::get('/admin/candidate/add', 'AdminController@addCandidate');
+
+Route::get('/admin/candidates', 'AdminController@candidate');
+
+Route::get('/admin/voters', 'AdminController@voter');
+
+Route::get('/admin/voter/add', 'AdminController@addVoter');
 // Route::get('/admin/voter/edit/{id}', 'AdminController@editVoter');
 // Route::get('/admin/voter/delete/{id}', 'AdminController@deleteVoter');

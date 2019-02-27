@@ -15,9 +15,13 @@
 
   <title>SB Admin - Blank Page</title>
 
-  <!-- Custom fonts for this template-->
-    <link href="{{ url($rootURL . 'assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+  <!-- Custom fonts for this template-->
+  <link href="{{ url($rootURL . 'assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+
+  <link href="{{ url($rootURL . 'assets/css/profile.css')}}" rel="stylesheet">
   <!-- Page level plugin CSS-->
   <link href="{{ url($rootURL .'assets/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
 
@@ -57,18 +61,18 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="blankpage.php">
+            <a class="nav-link" href="{{ url('admin/blank')}}">
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="profile.php">
-              <i class="fas fa-user"></i>
-              <span>Profile</span>
+            <a class="nav-link" href="{{ url('admin/userProfile')}}">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
             </a>
           </li>
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-fw fa-folder"></i>
               <span>Pages</span>
@@ -89,39 +93,39 @@
               <a class="dropdown-item" href="404.html">404 Page</a>
               <a class="dropdown-item active" href="blank.html">Blank Page</a>
             </div>
-          </li>
+          </li> --}}
           <li class="nav-item">
-            <a class="nav-link" href="result.php">
+            <a class="nav-link" href="{{ url ('admin/result')}}">
               <i class="fas fa-fw fa-chart-area"></i>
               <span>Results</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="register-candidate.php">
+            <a class="nav-link" href="{{ url ('/admin/candidate/add')}}">
             <i class="far fa-address-card"></i>
               <span>Candidate Register</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="registered-candidate.php">
+            <a class="nav-link" href="{{ url ('admin/candidates')}}">
             <i class="fas fa-fw fa-table"></i>
               <span>Candidate List</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="register-voter.php">
+            <a class="nav-link" href=" {{ url ('admin/voter/add')}}">
             <i class="far fa-address-card"></i>
               <span>Voter Register</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="registered-voter.php">
+            <a class="nav-link" href="{{ url ('admin/voters')}}">
               <i class="fas fa-fw fa-table"></i>
               <span>Voter List</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="user.php">
+            <a class="nav-link" href="{{ url ('admin/user')}}">
             <i class="fas fa-user"></i>
               <span>User</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="ballot-paper.php">
+            <a class="nav-link" href="{{ url ('admin/ballot-paper')}}">
             <i class="fas fa-vote-yea"></i>
               <span>Ballot Paper</span></a>
           </li>
@@ -191,6 +195,13 @@
 
   <!-- Demo scripts for this page-->
   <script src="{{ url($rootURL . 'assets/vendor/js/demo/datatables-demo.js')}}"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="{{ url($rootURL . 'assets/vendor/chart.js/Chart.min.js')}}"></script>
+          
+  <script src="{{ url($rootURL . 'assets/js/demo/chart-bar-demo.js')}}"></script>
+  {{--
+  <script src="{{ url($rootURL . 'assets/js/demo/chart-pie-demo.js')}}"></script> --}}
 
 </body>
 

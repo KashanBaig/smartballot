@@ -17,4 +17,33 @@ class AdminController extends Controller
 
         return view('blank');
     }
+
+    public function profile(){
+
+        return view('profile');
+    }
+
+    public function addCandidate(){
+
+        return view('addCandidate');
+    }
+
+    public function candidate(){
+
+        return view('candidate');
+    }
+
+    public function voter(){
+
+        return view('voter');
+    }
+
+    public function addVoter(){
+
+        return view('addVoter');
+    }
+    public function result(){
+
+        return view('result');
+    }
 }
