@@ -45,7 +45,6 @@
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
           <a class="dropdown-item" href="#">Activity Log</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
@@ -57,7 +56,6 @@
 
   {{-- Sidebar starts --}}
   <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
           <li class="nav-item">

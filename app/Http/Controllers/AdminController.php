@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+// Models
+use App\Voter;
+
 class AdminController extends Controller
 {
     public function login(){
@@ -35,7 +38,9 @@ class AdminController extends Controller
 
     public function voter(){
 
-        return view('voter');
+        $voters = Voter::all();
+
+        return view('voter')->with('voters', $voters);
     }
 
     public function addVoter(){

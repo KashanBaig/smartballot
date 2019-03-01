@@ -48,70 +48,24 @@
                 </tr>
               </tfoot>
               <tbody>
-                <tr>
-                  <td>Shahzaib</td>
-                  <td>Butt</td>
-                  <td>Butt Sahab</td>
-                  <td>E-112 Zubairy Colony Manghopir Road Karachi</td>
-                  <td>03/02/1997</td>
-                  <td>21</td>
-                  <td>Karachi</td>
-                  <td>Sindh</td>
-                  <td>Pakistani</td>
-                  <td>Male</td>
-                  <td>4240128018175</td>
-                  <td>NA-250</td>
-                  <td>PS-114</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                <td>Shahzaib</td>
-                  <td>Butt</td>
-                  <td>Butt Sahab</td>
-                  <td>E-112 Zubairy Colony Manghopir Road Karachi</td>
-                  <td>03/02/1997</td>
-                  <td>21</td>
-                  <td>Karachi</td>
-                  <td>Sindh</td>
-                  <td>Pakistani</td>
-                  <td>Male</td>
-                  <td>4240128018175</td>
-                  <td>NA-250</td>
-                  <td>PS-114</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                <td>Shahzaib</td>
-                  <td>Butt</td>
-                  <td>Butt Sahab</td>
-                  <td>E-112 Zubairy Colony Manghopir Road Karachi</td>
-                  <td>03/02/1997</td>
-                  <td>21</td>
-                  <td>Karachi</td>
-                  <td>Sindh</td>
-                  <td>Pakistani</td>
-                  <td>Male</td>
-                  <td>4240128018175</td>
-                  <td>NA-250</td>
-                  <td>PS-114</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                <td>Shahzaib</td>
-                  <td>Butt</td>
-                  <td>Butt Sahab</td>
-                  <td>E-112 Zubairy Colony Manghopir Road Karachi</td>
-                  <td>03/02/1997</td>
-                  <td>21</td>
-                  <td>Karachi</td>
-                  <td>Sindh</td>
-                  <td>Pakistani</td>
-                  <td>Male</td>
-                  <td>4240128018175</td>
-                  <td>NA-250</td>
-                  <td>PS-114</td>
-                  <td>0</td>
-                </tr>
+                <?php foreach($voters as $voter): ?>
+                  <tr>
+                    <td>{{ $voter['FIRST_NAME'] }}</td>
+                    <td>{{ $voter['LAST_NAME'] }}</td>
+                    <td>{{ $voter['FATHER_NAME'] }}</td>
+                    <td>{{ $voter['ADDRESS'] }}</td>
+                    <td>{{ $voter['BIRTH_DATE'] }}</td>
+                    <td>{{ $voter['AGE'] }}</td>
+                    <td>{{ $voter['CITY'] }}</td>
+                    <td>{{ $voter['PROVINCE'] }}</td>
+                    <td>{{ $voter['NATIONALITY'] }}</td>
+                    <td>{{ $voter['GENDER'] }}</td>
+                    <td>{{ $voter['VOTER_CNIC'] }}</td>                    
+                    <td>{{ $voter['NA_CONSTITUENCY'] }}</td>
+                    <td>{{ $voter['PA_CONSTITUENCY'] }}</td>
+                    <td>{{ $voter['VOTED'] }}</td>
+                  </tr>
+                <?php endforeach ?>
              
               </tbody>
             </table>
