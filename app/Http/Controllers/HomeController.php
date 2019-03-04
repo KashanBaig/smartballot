@@ -27,15 +27,13 @@ class HomeController extends Controller
     }
     public function postCnic(Request $request, $cnicNum){
 
-        $voter = Voter::where('CNIC', $cnicNum)->first();
+        $voter = Voter::where('VOTER_CNIC', $cnicNum)->first();
 
         if($voter){
             
-            
-            
             // Generating Session 
             $userArr = array(
-            'cnic' => $voter['CNIC'],
+            'cnic' => $voter['VOTER_CNIC'],
             'firstName' => $voter['FIRST_NAME'],
             'lastName' => $voter['LAST_NAME'],
             'fatherName' => $voter['FATHER_NAME'],

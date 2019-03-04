@@ -13,7 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 
-
 Route::get('/cnic', 'HomeController@getCnic');
 
 Route::get('/cnicPost/{cnicNum}', 'HomeController@postCnic');
@@ -28,7 +27,11 @@ Route::get('/PSBallot', 'HomeController@PSBallot');
 
 Route::get('/logout', 'HomeController@logout');
 
+// Admin Routes starts
+
 Route::get('/admin', 'AdminController@login');
+
+Route::post('/admin/signup', 'AdminController@signup');
 
 Route::get('/admin/blank', 'AdminController@blank');
 
@@ -43,5 +46,7 @@ Route::get('/admin/candidates', 'AdminController@candidate');
 Route::get('/admin/voters', 'AdminController@voter');
 
 Route::get('/admin/voter/add', 'AdminController@addVoter');
+
+Route::get('/admin/logout', 'AdminController@logout');
 // Route::get('/admin/voter/edit/{id}', 'AdminController@editVoter');
 // Route::get('/admin/voter/delete/{id}', 'AdminController@deleteVoter');

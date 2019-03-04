@@ -25,35 +25,24 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
+        
+        <form method='POST' action="admin/signup">
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" value="" id="inputEmail" class="form-control" placeholder="Email address" required>
-              <label for="inputEmail">Email address</label>
+              <input type="text" value="" name="username" id="username" class="form-control" placeholder="User Name" required>
+              <label for="username">User Name</label>
             </div>
           </div>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="password" value="" id="inputPassword" class="form-control" placeholder="Password" required>
-              <label for="inputPassword">Password</label>
+              <input type="text" value="" name="password" id="password" class="form-control" placeholder="Password" required> 
+              <label for="password">Password</label> 
             </div>
           </div>
-          <div class="form-group">
-            <!-- <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me">
-                Remember Password
-              </label>
-            </div> -->
-          </div>
-          <a class="btn btn-primary btn-block" href="{{url('admin/blank')}}">Login</a>
+          <input type="submit" class="btn btn-primary btn-block" value="Login">
+          
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </form>
-
-        <!-- <div class="text-center">
-          <a class="d-block small mt-3" href="register.html">Register an Account</a>
-          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
-        </div> -->
-      
       </div>
     </div>
   </div>
