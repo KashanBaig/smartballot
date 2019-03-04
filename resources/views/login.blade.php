@@ -23,6 +23,16 @@
 
   <div class="container">
     <div class="card card-login mx-auto mt-5">
+
+      @if ($error != '')
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+           {{$error}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
+
       <div class="card-header">Login</div>
       <div class="card-body">
         
