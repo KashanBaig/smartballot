@@ -59,7 +59,11 @@ class HomeController extends Controller
             return redirect()->action('HomeController@getCnic');
         }
     }
-    public function biometric(){
+    public function biometric(Request $request){
+
+        if(!$request->session()->get('user'))
+            return redirect()->action('HomeController@getCnic');
+
         $data = array(
             'header' => 'BIOMETRIC AUTHENTICATION',
             'showHeader' => false
@@ -81,7 +85,10 @@ class HomeController extends Controller
         );
         return view('getDetails')->with($data);
     }
-    public function NABallot(){
+    public function NABallot(Request $request){
+
+        if(!$request->session()->get('user'))
+            return redirect()->action('HomeController@getCnic');
 
         $data = array(
             'header' => 'E-BALLOT PAPER',
@@ -210,7 +217,11 @@ class HomeController extends Controller
 
         return view('NABallot')->with($data);
     }
-    public function PSBallot(){
+    public function PSBallot(Request $request){
+
+        if(!$request->session()->get('user'))
+            return redirect()->action('HomeController@getCnic');
+
         $data = array(
             'header' => 'E-BALLOT PAPER',
             'showHeader' => false,

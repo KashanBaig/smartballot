@@ -28,6 +28,11 @@
   <!-- Custom styles for this template-->
   <link href="{{ url($rootURL . 'assets/css/sb-admin.css')}}" rel="stylesheet">
 
+  <link href="{{ url($rootURL . 'assets/css/sb-admin-ballot-paper.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body id="page-top">
@@ -123,7 +128,7 @@
               <span>User</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url ('admin/ballot-paper')}}">
+            <a class="nav-link" href="{{ url ('admin/ballotPaper')}}">
             <i class="fas fa-vote-yea"></i>
               <span>Ballot Paper</span></a>
           </li>
@@ -198,9 +203,11 @@
   <!-- Page level plugin JavaScript-->
   <script src="{{ url($rootURL . 'assets/vendor/chart.js/Chart.min.js')}}"></script>
           
-  <script src="{{ url($rootURL . 'assets/js/demo/chart-bar-demo.js')}}"></script>
-  {{--
-  <script src="{{ url($rootURL . 'assets/js/demo/chart-pie-demo.js')}}"></script> --}}
+  <script src="{{ url($rootURL . 'assets/vendor/js/demo/chart-bar-demo.js')}}"></script>
+  
+  <script src="{{ url($rootURL . 'assets/vendor/js/demo/chart-pie-demo.js')}}"></script>
+
+  <script src="{{ url($rootURL . 'assets/vendor/js/sb-admin-ballot-paper.js')}}"></script>
 
 </body>
 
