@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Voter;
 use App\Na_candidate;
 use App\User;
+use App\Party;
 
 class AdminController extends Controller
 {
@@ -196,27 +197,27 @@ class AdminController extends Controller
             $request->file('ElectFlag');
 
             // Upload Image
-            $FlagPath = $request->flag->store('public', $flagNameToStore);
-            $ElectFlagPath = $request->ElectFlag->store('public', $electFlagNameToStore);
+            $FlagPath = $request->flag->move('public/flag_images', $flagNameToStore);
+            $ElectFlagPath = $request->ElectFlag->move('public/Elect_flag_images', $electFlagNameToStore);
         }
         else{
             $flagNameToStore = 'noFile.jpg';
             $electFlagNameToStore = 'noFile.jpg';
         }
 
-        // $candidate = new Na_candidate();
+        $newParty = new Party();
 
-        // $candidate->
+        $newParty->PARTY_NAME = $request->input('partyName');
+        $newParty->PARTY_ELECTORIAL_SIGN = $electFlagNameToStore;
+        $newParty->PARTY_FLAG = $flagNameToStore;
 
-        // $candidate->save();
+        if($newParty->save()){
+            return redirect()->action('AdminController@getBallotPaper');
+        }
+        else{
+            return 'not success';
+        }
 
-        $data = array(
-            'flag' => $flagNameToStore,
-            'electFlag' => $electFlagNameToStore,
-            'partyName' => $request->input('partyName')
-        );
-        
-        return $data;
     }
 
 

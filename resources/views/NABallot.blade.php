@@ -23,11 +23,14 @@
     <table class="table text-center">
         <tbody>
             <form name="myForm">
-            <?php foreach($rows as $row): ?>
+            <?php foreach($rowsTest as $row): ?>
               <tr>
-                  <td class="col-sm-2"><img src="./assets/images/flag/{{ $row['flag'] }}"></td>
-                  <td class="col-sm-2"><img src="./assets/images/sign/{{ $row['sign'] }}"></td>
-                  <td class="col-sm-3" style="font-size: 20px; font-weight: bold; ">{{ $row['title'] }}‬‎</td>
+                  {{-- <td class="col-sm-2"><img src="./assets/images/flag/{{ $row['flag'] }}"></td>
+                  <td class="col-sm-2"><img src="./assets/images/sign/{{ $row['sign'] }}"></td> --}}
+                  <td class="col-sm-2"><img src="./public/flag_images/{{ $row['PARTY_FLAG'] }}"></td>
+                  <td class="col-sm-2"><img src="./public/Elect_flag_images/{{ $row['PARTY_ELECTORIAL_SIGN'] }}"></td>
+                  <td class="col-sm-3" style="font-size: 20px; font-weight: bold; ">{{ $row['PARTY_NAME'] }}‬‎</td>
+                  {{-- <td class="col-sm-3" style="font-size: 20px; font-weight: bold; ">{{ $row['title'] }}‬‎</td> --}}
                   <td class="col-sm-2">
                     
                       <label>

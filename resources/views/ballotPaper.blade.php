@@ -1,7 +1,7 @@
 @extends('layout.admin')
 
 @section('content')
-    <!-- Page Content -->
+	<!-- Page Content -->
  
     <div class="card mb-3">
         <div class="card-header"><i class="fas fa-vote-yea"></i> Manage Ballot Paper</div>
@@ -205,7 +205,8 @@
 		</div>
 	</div>
 
-            </div>
+			</div>
 </div>
-<!-- /.container-fluid -->    
+<!-- /.container-fluid --> 
+
 @endsection
