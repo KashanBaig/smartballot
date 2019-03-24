@@ -43,7 +43,9 @@ Route::get('/admin/candidate/add', 'AdminController@addCandidateForm');
 
 Route::post('/admin/candidate/addCandidate', 'AdminController@addCandidate');
 
-Route::get('/admin/candidates', 'AdminController@candidate');
+Route::get('/admin/Na_candidates', 'AdminController@Na_candidate');
+
+Route::get('/admin/Pa_candidates', 'AdminController@Pa_candidate');
 
 Route::get('/admin/voters', 'AdminController@voter');
 

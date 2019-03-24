@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 // Models
 use App\Voter;
 use App\Na_candidate;
+use App\Pa_candidate;
 use App\User;
 use App\Party;
 
@@ -83,7 +84,7 @@ class AdminController extends Controller
 
         $candidate->CANDIDATE_FIRST_NAME = $request->input('first_name');
         $candidate->CANDIDATE_LAST_NAME = $request->input('last_name');
-        //$candidate->CANDIDATE_PARTY = $request->input('party');
+        $candidate->CANDIDATE_PARTY = $request->input('party');
         $candidate->NA_CONSTITUENCY = $request->input('na');
         $candidate->CANDIDATE_CNIC = $request->input('cnic');
         $candidate->CANDIDATE_GENDER = $request->input('gender');
@@ -94,14 +95,26 @@ class AdminController extends Controller
         }
     }
 
-    public function candidate(Request $request){
+    public function Na_candidate(Request $request){
         if(!$request->session()->get('admin'))
             return redirect()->action('AdminController@login');
 
-        $candidates = Na_candidate::all();
+        $Na_candidates = Na_candidate::all();
+       // $Pa_candidate = Pa_candidate::all();
+        //$candidates = $Pa_candidate $Na_candidate;
 
-        return view('candidate')->with('candidates', $candidates);
+        return view('Na_candidate')->with('Na_candidates', $Na_candidates);
     }
+
+    public function Pa_candidate(Request $request){
+        if(!$request->session()->get('admin'))
+            return redirect()->action('AdminController@login');
+
+        $Pa_candidates = Pa_candidate::all();
+
+        return view('Pa_candidate')->with('Pa_candidates', $Pa_candidates);
+    }
+
 
     public function voter(Request $request){
 
@@ -140,7 +153,7 @@ class AdminController extends Controller
         $voter->NATIONALITY = $request->input('nationality');
         $voter->GENDER = $request->input('gender');
         $voter->NA_CONSTITUENCY = $request->input('na');
-        $voter->PA_CONSTITUENCY = $request->input('ps');
+        $voter->PA_CONSTITUENCY = $request->input('pa');
 
         if($voter->save()){
             return redirect()->action('AdminController@voter'); 

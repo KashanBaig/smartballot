@@ -15,11 +15,19 @@
 
   <title>SB Admin - Blank Page</title>
 
+  
+  <!-- gauge Plugins JavaScript-->
+  <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+  
+  <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
   <!-- Custom fonts for this template-->
   <link href="{{ url($rootURL . 'assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" type="text/css" href="{{ url($rootURL . 'assets/css/gauge.css')}}">
 
   <link href="{{ url($rootURL . 'assets/css/profile.css')}}" rel="stylesheet">
   <!-- Page level plugin CSS-->
@@ -108,9 +116,14 @@
               <span>Candidate Register</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url ('admin/candidates')}}">
+            <a class="nav-link" href="{{ url ('admin/Na_candidates')}}">
             <i class="fas fa-fw fa-table"></i>
-              <span>Candidate List</span></a>
+              <span>NA Candidate List</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url ('admin/Pa_candidates')}}">
+            <i class="fas fa-fw fa-table"></i>
+              <span>PA Candidate List</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href=" {{ url ('admin/voter/add')}}">
@@ -208,6 +221,11 @@
   <script src="{{ url($rootURL . 'assets/vendor/js/demo/chart-pie-demo.js')}}"></script>
 
   <script src="{{ url($rootURL . 'assets/vendor/js/sb-admin-ballot-paper.js')}}"></script>
+
+  <script src="{{ url($rootURL . 'assets/vendor/js/gauge.js')}}"></script>
+
+  <script src="{{ url($rootURL . 'assets/vendor/js/geomap.js')}}"></script>
+
 
 </body>
 
