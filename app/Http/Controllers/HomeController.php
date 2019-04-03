@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 
 // Models
 use App\Voter;
 use App\Party;
+use App\Na_candidate;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,33 @@ class HomeController extends Controller
     public function postCnic(Request $request, $cnicNum){
 
         $voter = Voter::where('VOTER_CNIC', $cnicNum)->first();
+       //$users = DB::table('users')->get();
+
+       //print_r(DB::table('parties')->get());
+
+        // $query = 'SELECT n.CANDIDATE_PARTY 
+        // FROM voters V, na_candidates N 
+        // WHERE v.VOTER_CNIC= "4240128018175" AND V.NA_CONSTITUENCY = N.NA_CONSTITUENCY';
+        // $query = 'SELECT n.CANDIDATE_PARTY FROM voters v INNER JOIN na_candidates N ON n.NA_CONSTITUENCY=v.NA_CONSTITUENCY WHERE VOTER_CNIC= "4240128018175"';
+        // echo($query);
+        //$temp = Na_candidate::raw($query);
+       // print_r($temp);
+       //$voter = Party::query()->where('PARTY_NAME','TLP');
+       //$voter = DB::selectRaw($query)->get();
+
+    //    this is correct
+    //    $voter = DB::table('voters')
+    //         ->leftJoin('na_candidates', 'na_candidates.NA_CONSTITUENCY', '=', 'voters.NA_CONSTITUENCY')
+    //         ->where('voters.VOTER_CNIC', '4240128018175')
+    //         ->get();
+
+        // $voter = Party::select('PARTY_NAME')
+        //         ->from('parties')
+        //             ->whereIn('PARTY_NAME', function ($query){
+        //                 $query->from('voters V','na_candidates N')
+        //                 ->where('VOTER_CNIC', '4240128018175' && 'V.NA_CONSTITUENCY','N.NA_CONSTITUENCY')
+        //                 ->select('n.CANDIDATE_PARTY');
+        //                     })->get();
 
         if($voter){
             

@@ -33,7 +33,7 @@ Route::get('/admin', 'AdminController@login');
 
 Route::post('/admin/signup', 'AdminController@signup');
 
-Route::get('/admin/blank', 'AdminController@blank');
+Route::get('/admin/dashboard', 'AdminController@dashboard');
 
 Route::get('/admin/result', 'AdminController@result');
 
@@ -56,6 +56,19 @@ Route::post('/admin/voter/addVoter', 'AdminController@addVoter');
 Route::get('/admin/logout', 'AdminController@logout');
 
 Route::get('/admin/ballotPaper', 'AdminController@getBallotPaper');
+
 Route::post('/admin/addBallotPaper', 'AdminController@addBallotPaper');
-// Route::get('/admin/voter/edit/{id}', 'AdminController@editVoter');
+
+Route::post('/admin/voter/edit', 'AdminController@editVoter');
+
+Route::post('/admin/voter/update', 'AdminController@updateVoter');
+
+Route::post('/admin/voter/delete', 'AdminController@deleteVoter');
+
+Route::post('/admin/candidate/edit', 'AdminController@editCandidate');
+
+Route::post('/admin/candidate/update', 'AdminController@updateCandidate');
+
+Route::post('/admin/candidate/delete', 'AdminController@deleteCandidate');
+
 // Route::get('/admin/voter/delete/{id}', 'AdminController@deleteVoter');

@@ -118,7 +118,7 @@
   <div id="Update" style="display: none;">
     <br>
       <div class="card mb-3">
-        <div class="card-header"><i class="fa fa-address-card"></i> Update an Candidates</div>
+        <div class="card-header"><i class="fa fa-address-card"></i> Update a Candidates</div>
         <div class="card-body">
   
           <div class="app-container app-login">
@@ -130,7 +130,7 @@
               <div class="app-brand text-center"><b>ENTER CNIC NUMBER</b></div>
               </div>
               <br>
-                <form action="update-candidate.php" method="POST">
+                <form action="updateCandidate" method="POST">
                   <div class="input-group">   
   
                     <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     
@@ -138,8 +138,9 @@
                   </div>
                       <div class="text-center">
                         <br>
-                       <button type="submit" class="btn btn-success"><b>UPDATE</b></button>
+                       <button type="submit" class="btn btn-success"><b>SUBMIT</b></button>
                       </div>
+                      <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                   </form>
           </div>
       </div>         
@@ -170,7 +171,7 @@
               <div class="app-brand text-center"><b>ENTER CNIC NUMBER</b></div>
               </div>
               <br>
-                <form action="" method="POST">
+                <form action="deleteCandidate" method="POST">
                   <div class="input-group">   
   
                     <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     
@@ -180,6 +181,7 @@
                         <br>
                         <button type="submit" class="btn btn-danger"><b>DELETE</b></button>
                       </div>
+                      <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                   </form>
           </div>
       </div>         

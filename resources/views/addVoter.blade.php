@@ -137,16 +137,17 @@
               <div class="app-brand text-center"><b>ENTER CNIC NUMBER</b></div>
               </div>
               <br>
-                <form action="update-voter.php" method="POST">
+                <form action="edit" method="POST">
                   <div class="input-group">   
   
-                    <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     
+                    <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$"  class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     
   
                   </div>
                       <div class="text-center">
                         <br>
-                        <button type="submit" class="btn btn-success"><b>UPDATE</b></button>
+                        <button type="submit" class="btn btn-success"><b>SUBMIT</b></button>
                       </div>
+                      <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                   </form>
           </div>
       </div>         
@@ -154,9 +155,9 @@
   </div>
   </div>
   
-         </div>
-       </div>
-     </div>
+</div>
+</div>
+</div>
   
   <!-- /.container-fluid Update Voter -->
   
@@ -164,7 +165,7 @@
   <div id="Delete" style="display: none;">
     <br>
       <div class="card mb-3">
-        <div class="card-header"><i class="fa fa-trash"></i> Delete an Voter</div>
+        <div class="card-header"><i class="fa fa-trash"></i> Delete a Voter</div>
         <div class="card-body">
   
           <div class="app-container app-login">
@@ -176,16 +177,17 @@
               <div class="app-brand text-center"><b>ENTER CNIC NUMBER</b></div>
               </div>
               <br>
-                <form action="" method="POST">
+                <form action="delete" method="POST">
                   <div class="input-group">   
   
-                    <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     
+                    <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     
   
                   </div>
                       <div class="text-center">
                         <br>
                         <button type="submit" class="btn btn-danger"><b>DELETE</b></button>
                       </div>
+                      <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                   </form>
           </div>
       </div>         

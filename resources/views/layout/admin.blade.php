@@ -72,7 +72,7 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('admin/blank')}}">
+            <a class="nav-link" href="{{ url('admin/dashboard')}}">
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
