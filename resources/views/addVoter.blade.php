@@ -109,8 +109,11 @@
     </div>
   
     <div>
-    <button type="button" class="btn btn-warning">Scan Finger Print</button>   
+    <textarea name="f_template" id="f_template" cols="35" rows="11" style="display:none;" ></textarea>
+    <img border="2" id="FPImage1" alt="Fingerpint Image" height=300 width=210 src=".\Images\PlaceFinger.bmp" > <br>
+    <button type="button" class="btn btn-warning" onclick="CallSGIFPGetData(SuccessFunc1, ErrorFunc)">Scan Finger Print</button>      
     <button type="submit"  class="btn btn-primary" id='btnRegister'>Register</button>
+  
   </div>  
   <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
   </form>

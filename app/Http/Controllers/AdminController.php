@@ -198,6 +198,7 @@ class AdminController extends Controller
         $voter->GENDER = $request->input('gender');
         $voter->NA_CONSTITUENCY = $request->input('na');
         $voter->PA_CONSTITUENCY = $request->input('pa');
+        $voter->FINGERPRINT = $request->input('f_template');
 
         if($voter->save()){
             return redirect()->action('AdminController@voter'); 

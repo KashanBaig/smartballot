@@ -83,6 +83,7 @@ class HomeController extends Controller
                 'naConst' => $voter['NA_CONSTITUENCY'],
                 'psConst' => $voter['PS_CONSTITUENCY'],
                 'voted' => $voter['VOTED'],
+                'fingerPrint' => $voter['FINGERPRINT'],
                 'na_parties' => $na_parties,
                 'pa_parties' => $pa_parties
             );
@@ -101,12 +102,15 @@ class HomeController extends Controller
 
     public function biometric(Request $request){
 
-        if(!$request->session()->get('user'))
+        $voter = $request->session()->get('user');
+
+        if(!$voter = $request->session()->get('user'))
             return redirect()->action('HomeController@getCnic');
 
         $data = array(
             'header' => 'BIOMETRIC AUTHENTICATION',
-            'showHeader' => false
+            'showHeader' => false,
+            'voter'=> $voter
         );
         return view('biometric')->with($data);
     }

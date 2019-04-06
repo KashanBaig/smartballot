@@ -226,6 +226,8 @@
 
   <script src="{{ url($rootURL . 'assets/vendor/js/geomap.js')}}"></script>
 
+  <script src="{{ url($rootURL . 'assets/vendor/js/fingerprint-script.js')}}"></script>
+
 
 </body>
 
