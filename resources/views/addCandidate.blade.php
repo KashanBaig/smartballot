@@ -130,7 +130,7 @@
               <div class="app-brand text-center"><b>ENTER CNIC NUMBER</b></div>
               </div>
               <br>
-                <form action="updateCandidate" method="POST">
+                <form action="edit" method="POST">
                   <div class="input-group">   
   
                     <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     

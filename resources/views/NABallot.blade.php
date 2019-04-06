@@ -23,7 +23,7 @@
     <table class="table text-center">
         <tbody>
             <form name="myForm">
-            <?php foreach($rowsTest as $row): ?>
+            <?php foreach($rows as $row): ?>
               <tr>
                   {{-- <td class="col-sm-2"><img src="./assets/images/flag/{{ $row['flag'] }}"></td>
                   <td class="col-sm-2"><img src="./assets/images/sign/{{ $row['sign'] }}"></td> --}}

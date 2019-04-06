@@ -77,7 +77,7 @@ class AdminController extends Controller
         return view('addCandidate');
     }
 
-    public function addCandidate(Request $request){
+    public function addCandidate(Request $request){ 
         if(!$request->session()->get('admin'))
             return redirect()->action('AdminController@login');
 
@@ -100,7 +100,7 @@ class AdminController extends Controller
             $Pa_candidate->CANDIDATE_FIRST_NAME = $request->input('first_name');
             $Pa_candidate->CANDIDATE_LAST_NAME = $request->input('last_name');
             $Pa_candidate->CANDIDATE_PARTY = $request->input('party');
-            $Pa_candidate->NA_CONSTITUENCY = $request->input('pa');
+            $Pa_candidate->PA_CONSTITUENCY = $request->input('pa');
             $Pa_candidate->CANDIDATE_CNIC = $request->input('cnic');
             $Pa_candidate->CANDIDATE_GENDER = $request->input('gender');
             $Pa_candidate->PROVINCE = $request->input('state');
@@ -128,7 +128,7 @@ class AdminController extends Controller
             $Pa_candidate->CANDIDATE_FIRST_NAME = $request->input('first_name');
             $Pa_candidate->CANDIDATE_LAST_NAME = $request->input('last_name');
             $Pa_candidate->CANDIDATE_PARTY = $request->input('party');
-            $Pa_candidate->NA_CONSTITUENCY = $request->input('pa');
+            $Pa_candidate->PA_CONSTITUENCY = $request->input('pa');
             $Pa_candidate->CANDIDATE_CNIC = $request->input('cnic');
             $Pa_candidate->CANDIDATE_GENDER = $request->input('gender');
             $Pa_candidate->PROVINCE = $request->input('state');
@@ -248,19 +248,19 @@ class AdminController extends Controller
             $voter = Voter::where('VOTER_CNIC', $request->input('cnic'))
                         ->update(
                             [
-                            'FIRST_NAME' => $request->input('first_name'),
-                            'LAST_NAME' => $request->input('last_name'),
-                            'FATHER_NAME' => $request->input('father_name'),
-                            'VOTER_CNIC' => $request->input('cnic'),
-                            'ADDRESS' => $request->input('address'),
-                            'BIRTH_DATE' => $request->input('dob'),
-                            'AGE' => $request->input('age'),
-                            'CITY' => $request->input('city'),
-                            'PROVINCE' => $request->input('state'),
-                            'NATIONALITY' => $request->input('nationality'),
-                            'GENDER' => $request->input('gender'),
-                            'NA_CONSTITUENCY' => $request->input('na'),
-                            'PA_CONSTITUENCY' => $request->input('pa')
+                                'FIRST_NAME' => $request->input('first_name'),
+                                'LAST_NAME' => $request->input('last_name'),
+                                'FATHER_NAME' => $request->input('father_name'),
+                                'VOTER_CNIC' => $request->input('cnic'),
+                                'ADDRESS' => $request->input('address'),
+                                'BIRTH_DATE' => $request->input('dob'),
+                                'AGE' => $request->input('age'),
+                                'CITY' => $request->input('city'),
+                                'PROVINCE' => $request->input('state'),
+                                'NATIONALITY' => $request->input('nationality'),
+                                'GENDER' => $request->input('gender'),
+                                'NA_CONSTITUENCY' => $request->input('na'),
+                                'PA_CONSTITUENCY' => $request->input('pa')
                             ]
                         );
             return redirect()->action('AdminController@voter');
@@ -293,19 +293,77 @@ class AdminController extends Controller
         if(!$request->session()->get('admin'))
             return redirect()->action('AdminController@login');
 
-        $candidate = Na_candidate::where('CANDIDATE_CNIC', $request->input('cnic'));
-        if($candidate){
-            
-            // Generating Session 
+        $na = Na_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))->first();
+        $pa = Pa_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))->first();
+
+        if($na or $pa){
+    
             $userArr = array(
-            'cnic' => $candidate['VOTER_CNIC'],
-            'firstName' => $candidate['FIRST_NAME'],
-            'lastName' => $candidate['LAST_NAME'],
-            'party' => $candidate['PARTY'],
-            'gender' => $candidate['GENDER'],
-            'cnic' => $candidate['CANDIDATE_CNIC']
+            'cnic' => $na['CANDIDATE_CNIC'],
+            'firstName' => $na['CANDIDATE_FIRST_NAME'],
+            'lastName' => $na['CANDIDATE_LAST_NAME'],
+            'party' => $na['CANDIDATE_PARTY'],
+            'gender' => $na['CANDIDATE_GENDER'],
+            'cnic' => $na['CANDIDATE_CNIC'],
+            'state' => $na['PROVINCE'],
+            'na' => $na['NA_CONSTITUENCY'],
+            
+            'cnic' => $pa['CANDIDATE_CNIC'],
+            'firstName' => $pa['CANDIDATE_FIRST_NAME'],
+            'lastName' => $pa['CANDIDATE_LAST_NAME'],
+            'party' => $pa['CANDIDATE_PARTY'],
+            'gender' => $pa['CANDIDATE_GENDER'],
+            'cnic' => $pa['CANDIDATE_CNIC'],
+            'state' => $pa['PROVINCE'],
+            'pa' => $pa['PA_CONSTITUENCY']
             );
+
+            return view('editCandidate')->with('candidate', $userArr);
         }
+        else{
+            return redirect()->action('AdminController@addCandidateForm');
+        }
+    }
+
+    public function updateCandidate(Request $request){
+        if(!$request->session()->get('admin'))
+            return redirect()->action('AdminController@login');
+        
+        $na = Na_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))
+            ->update(
+                [
+                'CANDIDATE_FIRST_NAME' => $request->input('firstName'),
+                'CANDIDATE_LAST_NAME'  => $request->input('lastName'),
+                'CANDIDATE_PARTY'      => $request->input('party'),
+                'CANDIDATE_GENDER'     => $request->input('gender'),
+                'CANDIDATE_CNIC'       => $request->input('cnic'),
+                'PROVINCE'             => $request->input('state'),
+                'NA_CONSTITUENCY'      => $request->input('na')
+                ]
+                );
+
+        $pa = Pa_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))
+            ->update(
+                [
+                    'CANDIDATE_FIRST_NAME' => $request->input('firstName'),
+                    'CANDIDATE_LAST_NAME'  => $request->input('lastName'),
+                    'CANDIDATE_PARTY'      => $request->input('party'),
+                    'CANDIDATE_GENDER'     => $request->input('gender'),
+                    'CANDIDATE_CNIC'       => $request->input('cnic'),
+                    'PROVINCE'             => $request->input('state'),
+                    'PA_CONSTITUENCY'      => $request->input('pa')
+                ]
+                );
+        if($na or $pa){
+            if($na)
+                return redirect()->action('AdminController@Na_candidate');
+            else
+                return redirect()->action('AdminController@Pa_candidate');
+        }
+        else{
+            return "Error";
+        }
+
     }
 
     public function deleteCandidate(Request $request){
