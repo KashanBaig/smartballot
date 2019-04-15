@@ -4,6 +4,9 @@
 
 <link rel="stylesheet" href="./assets/css/ballot.css">
 
+<script>
+    let valueToPass = null;
+  </script>
 
 <article id="home" class="content"><br>
 
@@ -14,12 +17,11 @@
     <div class="col-lg-2">
         <button type="button" id="btnSuccess" class="btn btn-success"  onclick="goToPS()" disabled>Proceed Logout</button>
       <script>
-          document.querySelector('#btnSuccess').disabled = true;
+          document.querySelector('#btnSuccess').disabled = false;
         </script>
     </div>
   </div>
 
-  
 
   <table class="table text-center">
       <tbody>
@@ -29,13 +31,10 @@
                 <td class="col-sm-2"><img src="./public/flag_images/{{ $row['PARTY_FLAG'] }}"></td>
                 <td class="col-sm-2"><img src="./public/Elect_flag_images/{{ $row['PARTY_ELECTORIAL_SIGN'] }}"></td>
                 <td class="col-sm-3" style="font-size: 20px; font-weight: bold; ">{{ $row['PARTY_NAME'] }}‬‎</td>
-                {{-- <td class="col-sm-2"><img src="./assets/images/flag/{{ $row['flag'] }}"></td>
-                <td class="col-sm-2"><img src="./assets/images/sign/{{ $row['sign'] }}"></td>
-                <td class="col-sm-3" style="font-size: 20px; font-weight: bold; ">{{ $row['title'] }}‬‎</td> --}}
                 <td class="col-sm-2">
                   
                     <label>
-                    <input type="checkbox"  id="{{ $row['name'] }}" name="{{ $row['name'] }}" value="{{ $row['value'] }}" onclick="return myfun(this)"> <span class="label-text"></span>
+                    <input type="radio"  name="radio"  onclick="saveName('<?php echo $row['PARTY_NAME'] ?>')"> <span class="label-text"></span>
                     </label>
                   
                 </td>
@@ -46,113 +45,38 @@
         </tr>
       </tbody>
   </table>
-    <!--table End-->
-</article><!-- **Home Content - End** -->
+</article>
 
 <script type="text/javascript">
-  function myfun(stayChecked) {
-    // document.getElementById('btnSuccess').disabled = false;
-    with (document.myForm) {
 
-      for (i = 0; i < elements.length; i++) {
-        if (elements[i].checked == true && elements[i].name != stayChecked.name) {
-          elements[i].checked = false;
-        }
+function saveName(name){
+  valueToPass = name;
+}
+
+function goToPS() {
+  if(valueToPass !== null){
+        $.ajax({
+          url: root + 'PABallotSave',
+          method: 'post',
+          dataType: 'json',
+          data: {
+            name: valueToPass,
+            _token: '{{ csrf_token() }}'
+
+          },
+          success: function(data){
+            window.location = root + 'logout';
+          },
+          error: function(e){
+            console.log(e.responseText);
+            window.location = root + 'logout';
+          }
+        })
       }
-    }
-    checkCondition(stayChecked);
-  }
-
-  function checkCondition(stayChecked) {
-    with (document.myForm) {
-      for (i = 0; i < elements.length; i++) {
-        if (elements[i].checked == true) {
-          document.getElementById('btnSuccess').disabled = false;
-          alertName(stayChecked.name);
-
-          break;
-        }
-        else {
-          document.getElementById('btnSuccess').disabled = true;
-        }
+      else{
+        alert('Select A Party First');
       }
-    }
-  }
-
-  function alertName(name) {
-    switch (name) {
-      case 'cb1':
-        $.alert("You Have Selected 'پاکستان تحريک انصاف' For Provincial Assembly of Sindh");
-        break;
-
-      case 'cb2':
-        $.alert("You Have Selected 'پاکِستان پیپلز پارٹی‬‎' For Provincial Assembly of Sindh");
-        break;
-
-       case 'cb3':
-        $.alert("You Have Selected 'پاکستان مسلم لیگ ن' For Provincial Assembly of Sindh");
-        break;
-
-       case 'cb4':
-        $.alert("You Have Selected 'جميعت علماء پاکستان' For Provincial Assembly of Sindh");
-        break;
-
-       case 'cb5':
-        $.alert("You Have Selected 'پاکستان مسلم لیگ ق' For Provincial Assembly of Sindh");
-        break;
-
-       case 'cb6':
-        $.alert("You Have Selected 'جمیعت علمائے اسلام ف' For Provincial Assembly of Sindh");
-        break;
-
-       case 'cb7':
-        $.alert("You Have Selected 'متحدہ قومی موومنٹ‬ پاکِستان' For Provincial Assembly of Sindh");
-        break;
-
-       case 'cb8':
-        $.alert("You Have Selected 'عوامی نيشنل پارٹی' For Provincial Assembly of Sindh");
-        break;
-
-       case 'cb9':
-        $.alert("You Have Selected 'پاکستان مسلم لیگ ف' For Provincial Assembly of Sindh");
-        break;
-
-        case 'cb10':
-        $.alert("You Have Selected 'پاک سر زمین پارٹی‬‎' For Provincial Assembly of Sindh");
-        break;
-
-        case 'cb11':
-        $.alert("You Have Selected 'پاکستان عوامی تحريک' For Provincial Assembly of Sindh");
-        break;
-
-        case 'cb12':
-        $.alert("You Have Selected 'عوامی ورکرز پارٹی' For Provincial Assembly of Sindh");
-        break;
-
-        case 'cb13':
-        $.alert("You Have Selected 'تحریک لبیک پاکستان' For Provincial Assembly of Sindh");
-        break;
-
-        case 'cb14':
-        $.alert("You Have Selected 'بلوچستان نيشنل پارٹی' For Provincial Assembly of Sindh");
-        break;
-
-        case 'cb15':
-        $.alert("You Have Selected 'پشتونخوا ملی عوامی پارٹی‬' For Provincial Assembly of Sindh");
-        break;
-
-        case 'cb16':
-        $.alert("You Have Selected 'پاکستان گرین پارٹی‎' For Provincial Assembly of Sindh");
-        break;
-
-
-    }
-
-  }
-
-  function goToPS() {
-      location.href = root + 'logout';
-    }
+}
 
 </script>
     

@@ -133,7 +133,7 @@ class HomeController extends Controller
 
         if(!$request->session()->get('user'))
             return redirect()->action('HomeController@getCnic');
-            
+    
         $user = $request->session()->get('user');
 
         $rows = $user['na_parties'];
@@ -146,10 +146,35 @@ class HomeController extends Controller
 
         return view('NABallot')->with($data);
     }
-    public function PSBallot(Request $request){
+
+    public function NABallotSave(Request $request){
+        if($request->name){
+            $data = $request->name;
+            $request->session()->put('NA_casted', $data);
+            return $data;
+        }
+    }
+
+    public function PABallotSave(Request $request){
+        if($request->name){
+            $data = $request->name;
+            $request->session()->put('PA_casted', $data);
+            return $data;
+        }
+    }
+    public function PABallot(Request $request){
 
         if(!$request->session()->get('user'))
             return redirect()->action('HomeController@getCnic');
+        
+        // $V  = DB::table('na_candidates')->where([
+        //     ['CANDIDATE_PARTY', 'HPK'],
+        //     ['CANDIDATE_CNIC', '1234567891238']
+        //     ])->increment('CANDIDATE_VOTES', 1);
+        // if($V)
+        //     return 'success';
+        // else
+        //     return 'not';
 
         $user = $request->session()->get('user');
 
@@ -159,133 +184,16 @@ class HomeController extends Controller
             'header' => 'E-BALLOT PAPER',
             'showHeader' => false,
             'rows' => $rows
-            //array(
-                // array(
-                //     'flag' => 'pti.jpg',
-                //     'sign' => 'bat.jpg',
-                //     'title' => 'پاکستان تحريک انصاف',
-                //     'name' => 'cb1',
-                //     'value' => '1'
-                // ),
-                // array(
-                //     'flag' => 'pppp.jpg',
-                //     'sign' => 'tier.jpg',
-                //     'title' => 'پاکِستان پیپلز پارٹی‬‎',
-                //     'name' => 'cb2',
-                //     'value' => '2'
-                
-                // ),
-                // array(
-                //     'flag' => 'pmln.png',
-                //     'sign' => 'tiger.jpg',
-                //     'title' => 'پاکستان مسلم لیگ ن',
-                //     'name' => 'cb3',
-                //     'value' => '3'
-                // ),
-                // array(
-                //     'flag' => 'jmi.png',
-                //     'sign' => 'tarazu.jpg',
-                //     'title' => 'جماعتِ اسلامی پاکستان',
-                //     'name' => 'cb4',
-                //     'value' => '4'
-                
-                // ),
-                // array(
-                //     'flag' => 'pmlq.png',
-                //     'sign' => 'cycle.jpg',
-                //     'title' => 'پاکستان مسلم لیگ ق‬‬‎',
-                //     'name' => 'cb5',
-                //     'value' => '5'
-                // ),
-                // array(
-                //     'flag' => 'jui.jpg',
-                //     'sign' => 'book.jpg',
-                //     'title' => 'جمیعت علمائے اسلام ف‬‬‎',
-                //     'name' => 'cb6',
-                //     'value' => '6'
-                
-                // ),
-                // array(
-                //     'flag' => 'mqm.jpg',
-                //     'sign' => 'kite.jpg',
-                //     'title' => 'متحدہ قومی موومنٹ‬ پاکِستان',
-                //     'name' => 'cb7',
-                //     'value' => '7'
-                // ),
-                // array(
-                //     'flag' => 'awami.png',
-                //     'sign' => 'lantern.jpg',
-                //     'title' => 'عوامی نيشنل پارٹی',
-                //     'name' => 'cb8',
-                //     'value' => '8'
-                
-                // ),
-                // array(
-                //     'flag' => 'pmlf.jpg',
-                //     'sign' => 'flower.jpg',
-                //     'title' => 'پاکستان مسلم لیگ ف',
-                //     'name' => 'cb9',
-                //     'value' => '9'
-                // ),
-                // array(
-                //     'flag' => 'psp.png',
-                //     'sign' => 'dolphin.jpg',
-                //     'title' => 'پاک سر زمین پارٹی‬‎‬‎',
-                //     'name' => 'cb10',
-                //     'value' => '10'
-                
-                // ),
-                // array(
-                //     'flag' => 'pat.png',
-                //     'sign' => 'pat.png',
-                //     'title' => 'پاکستان عوامی تحريک',
-                //     'name' => 'cb11',
-                //     'value' => '11'
-                // ),
-                // array(
-                //     'flag' => 'awp.png',
-                //     'sign' => 'awp.png',
-                //     'title' => 'عوامی ورکرز پارٹی‬‎',
-                //     'name' => 'cb12',
-                //     'value' => '12'
-                
-                // ),
-                // array(
-                //     'flag' => 'tlp.png',
-                //     'sign' => 'tlp.png',
-                //     'title' => 'تحریک لبیک پاکستان',
-                //     'name' => 'cb13',
-                //     'value' => '13'
-                // ),
-                // array(
-                //     'flag' => 'bnp.png',
-                //     'sign' => 'bnp.png',
-                //     'title' => 'بلوچستان نيشنل پارٹی',
-                //     'name'=> 'cb14',
-                //     'value' => '14'
-                // ),
-                // array(
-                //     'flag' => 'pmap.png',
-                //     'sign' => 'pmap.png',
-                //     'title' => 'پشتونخوا ملی عوامی پارٹی‬',
-                //     'name' => 'cb15',
-                //     'value' => '15'
-                // ),
-                // array(
-                //     'flag' => 'pgp.jpg',
-                //     'sign' => 'pgp.png',
-                //     'title' => 'پاکستان گرین پارٹی‎‬‎',
-                //     'name' => 'cb16',
-                //     'value' => '16'
-                
-                // )
-    );
+        );
+
         return view('PSBallot')->with($data);
     }
     public function logout(Request $request){
 
         // Destroying the session
         $request->session()->forget('user');
+        $request->session()->forget('NA_casted');
+        $request->session()->forget('PA_casted');
 
         $data = array(
             'header' => 'SMART BALLOT SYSTEM',

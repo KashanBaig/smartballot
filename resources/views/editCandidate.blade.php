@@ -53,7 +53,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="inputNA">NA-CONSTITUENCY</label>
-        <input type="text" name="na" value="{{ $candidate['na'] }}"  class="form-control" id="inputNA" onkeyup="btnDisable()" placeholder="NAXXX" pattern="^[A-Z]{2}[0-9+]{1,}$" required>
+        <input type="text" name="na" value="{{ $candidate['na'] }}"  class="form-control" id="inputNA" onkeyup="btnDisable()" placeholder="NAXXX" pattern="^[A-Z]{2}[0-9+]{1,}$">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPS">PA-CONSTITUENCY</label>

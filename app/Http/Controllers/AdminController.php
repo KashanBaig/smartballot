@@ -297,28 +297,45 @@ class AdminController extends Controller
         $na = Na_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))->first();
         $pa = Pa_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))->first();
 
-        if($na or $pa){
+        if($na and $pa){
     
             $userArr = array(
-            'cnic' => $na['CANDIDATE_CNIC'],
-            'firstName' => $na['CANDIDATE_FIRST_NAME'],
-            'lastName' => $na['CANDIDATE_LAST_NAME'],
-            'party' => $na['CANDIDATE_PARTY'],
-            'gender' => $na['CANDIDATE_GENDER'],
-            'cnic' => $na['CANDIDATE_CNIC'],
-            'state' => $na['PROVINCE'],
-            'na' => $na['NA_CONSTITUENCY'],
-            
-            'cnic' => $pa['CANDIDATE_CNIC'],
-            'firstName' => $pa['CANDIDATE_FIRST_NAME'],
-            'lastName' => $pa['CANDIDATE_LAST_NAME'],
-            'party' => $pa['CANDIDATE_PARTY'],
-            'gender' => $pa['CANDIDATE_GENDER'],
-            'cnic' => $pa['CANDIDATE_CNIC'],
-            'state' => $pa['PROVINCE'],
-            'pa' => $pa['PA_CONSTITUENCY']
+                'firstName' => $na['CANDIDATE_FIRST_NAME'],
+                'lastName' => $na['CANDIDATE_LAST_NAME'],
+                'party' => $na['CANDIDATE_PARTY'],
+                'gender' => $na['CANDIDATE_GENDER'],
+                'cnic' => $na['CANDIDATE_CNIC'],
+                'state' => $na['PROVINCE'],
+                'na' => $na['NA_CONSTITUENCY'],
+                'pa' => $pa['PA_CONSTITUENCY']
             );
 
+            return view('editCandidate')->with('candidate', $userArr);
+        } 
+        else if($pa){
+            $userArr = array(
+                'firstName' => $pa['CANDIDATE_FIRST_NAME'],
+                'lastName' => $pa['CANDIDATE_LAST_NAME'],
+                'party' => $pa['CANDIDATE_PARTY'],
+                'gender' => $pa['CANDIDATE_GENDER'],
+                'cnic' => $pa['CANDIDATE_CNIC'],
+                'state' => $pa['PROVINCE'],
+                'pa' => $pa['PA_CONSTITUENCY'],
+                'na' => $pa['NA_CONSTITUENCY']
+            );
+            return view('editCandidate')->with('candidate', $userArr);
+        }
+        else if($na){
+            $userArr = array(
+                'firstName' => $na['CANDIDATE_FIRST_NAME'],
+                'lastName' => $na['CANDIDATE_LAST_NAME'],
+                'party' => $na['CANDIDATE_PARTY'],
+                'gender' => $na['CANDIDATE_GENDER'],
+                'cnic' => $na['CANDIDATE_CNIC'],
+                'state' => $na['PROVINCE'],
+                'na' => $na['NA_CONSTITUENCY'],
+                'pa' => $pa['PA_CONSTITUENCY']
+            );
             return view('editCandidate')->with('candidate', $userArr);
         }
         else{
@@ -373,9 +390,11 @@ class AdminController extends Controller
             return redirect()->action('AdminController@login');
         
         try{
-            $candidate = Na_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))->delete();
+            $na = Na_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))->delete();
+            // delete function not working with pa
+            //$pa = Pa_candidate::where('CANDIDATE_CNIC', $request->input('cnic'))->delete();
 
-            return redirect()->action('AdminController@Na_candidate');
+                return redirect()->action('AdminController@Na_candidate');
 
         } catch (Exception $e) {
             report($e);
@@ -406,8 +425,10 @@ class AdminController extends Controller
     public function getBallotPaper(Request $request){
         if(!$request->session()->get('admin'))
             return redirect()->action('AdminController@login');
+        
+        $parties = Party::all();
 
-        return view('ballotPaper');
+        return view('ballotPaper')->with('parties', $parties);
     }
 
     public function addBallotPaper(Request $request){

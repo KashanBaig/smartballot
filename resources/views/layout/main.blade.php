@@ -13,11 +13,11 @@
         <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="./assets/css/vendor.css">
         <link rel="stylesheet" href="./assets/css/flat-admin.css">
-
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
         <script type="text/javascript">
             function isNumberKey(evt)
                {
@@ -29,7 +29,7 @@
                } 
    
         </script>
-
+        
         <script>
             const root = 'http://localhost/Smart_Ballot_System/public/';
         </script>

@@ -188,7 +188,8 @@
                   </div>
                       <div class="text-center">
                         <br>
-                        <button type="submit" class="btn btn-danger"><b>DELETE</b></button>
+                        {{-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><b>DELETE</b></a> --}}
+                        <button type="submit" onclick="return confirm('Are you sure you want to Remove?');" class="btn btn-danger"><b>DELETE</b></button>
                       </div>
                       <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                   </form>
@@ -203,7 +204,29 @@
      </div>
   
    <!--/.container-fluid Delete Voter-->
-  
+     	<!-- Delete Modal HTML -->
+       <div id="deleteEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form action="delete" method="POST">
+              <div class="modal-header">						
+                <h4 class="modal-title">Delete Ballot Paper</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">					
+                <p>Are you sure you want to delete these Records?</p>
+                <p class="text-warning"><small>This action cannot be undone.</small></p>
+              </div>
+              <div class="modal-footer">
+                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                <input type="submit" class="btn btn-danger" value="Delete">
+              </div>
+              <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+            </form>
+          </div>
+        </div>
+      </div>
+
     <script type="text/javascript">
   
               function AddVoterForm() {

@@ -37,7 +37,7 @@
   <link href="{{ url($rootURL . 'assets/css/sb-admin.css')}}" rel="stylesheet">
 
   <link href="{{ url($rootURL . 'assets/css/sb-admin-ballot-paper.css') }}" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"> --}}
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 

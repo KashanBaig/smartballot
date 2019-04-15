@@ -22,8 +22,10 @@ Route::get('/bio', 'HomeController@biometric');
 Route::get('/details', 'HomeController@getDetails');
 
 Route::get('/NABallot', 'HomeController@NABallot');
+Route::post('/NABallotSave', 'HomeController@NABallotSave');
 
-Route::get('/PSBallot', 'HomeController@PSBallot');
+Route::get('/PABallot', 'HomeController@PABallot');
+Route::post('/PABallotSave', 'HomeController@PABallotSave');
 
 Route::get('/logout', 'HomeController@logout');
 
@@ -70,5 +72,3 @@ Route::post('/admin/candidate/edit', 'AdminController@editCandidate');
 Route::post('/admin/candidate/update', 'AdminController@updateCandidate');
 
 Route::post('/admin/candidate/delete', 'AdminController@deleteCandidate');
-
-// Route::get('/admin/voter/delete/{id}', 'AdminController@deleteVoter');

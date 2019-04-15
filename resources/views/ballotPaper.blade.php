@@ -39,6 +39,8 @@
                     </tr>
                 </thead>
                 <tbody>
+					<form name="myForm">
+					<?php foreach($parties as $party): ?>
                     <tr>
 						<td>
 							<span class="custom-checkbox">
@@ -46,51 +48,22 @@
 								<label for="checkbox1"></label>
 							</span>
 						</td>
-                        <td>
-							 <div class="form-group">
-							<input type="file" id="BSbtndanger">
-							</div>
-                        </td>
-                        <td>
-							 <div class="form-group">
-							<input type="file" id="BSbtndanger">
-							</div>
-                        </td>
-						<td>PTI</td>
+						<td class="col-xm-2"><img src="../public/flag_images/{{ $party['PARTY_FLAG'] }}"> </td>
+                        <td class="col-xm-2"><img src="../public/Elect_flag_images/{{ $party['PARTY_ELECTORIAL_SIGN'] }}"></td>
+						<td>{{ $party['PARTY_NAME'] }}</td>
                        
                         <td>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
 						</td>
-                        <td>
-							 <div class="form-group">
-							<input type="file" id="BSbtndanger">
-							</div>
-                        </td>
-                        <td>
-							 <div class="form-group">
-							<input type="file" id="BSbtndanger">
-							</div>
-                        </td>
-						<td>PMLN</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
+						<?php endforeach ?>
+					</form>
+					</tr>
 					
                 </tbody>
             </table>
 			<div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <div class="hint-text">Showing <b>15</b> out of <b>25</b> entries</div>
                 <ul class="pagination">
                     <li class="page-item disabled"><a href="#">Previous</a></li>
                     <li class="page-item"><a href="#" class="page-link">1</a></li>
@@ -137,7 +110,7 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Addd">
+						<input type="submit" class="btn btn-success" value="Add">
                     </div>
                     
 				</form>
@@ -205,7 +178,7 @@
 		</div>
 	</div>
 
-			</div>
+	</div>
 </div>
 <!-- /.container-fluid --> 
 
