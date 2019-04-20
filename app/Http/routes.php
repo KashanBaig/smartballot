@@ -72,3 +72,5 @@ Route::post('/admin/candidate/edit', 'AdminController@editCandidate');
 Route::post('/admin/candidate/update', 'AdminController@updateCandidate');
 
 Route::post('/admin/candidate/delete', 'AdminController@deleteCandidate');
+
+Route::get('/admin/users', 'AdminController@users');

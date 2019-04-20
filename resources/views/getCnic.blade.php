@@ -12,6 +12,9 @@
          <div class="form-header">
              <div class="app-brand">ENTER CNIC NUMBER</div>
              </div>
+              @if($errors->any())
+                <script> alert('You already casted your vote'); </script>
+              @endif
                <form>
                  <div class="input-group">                    
                    <input type="text" maxlength="13" id="cnic" onkeypress="return isNumberKey(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" name="cnic" class="form-control" name="cnic" placeholder="CNIC NUMBER" aria-describedby="basic-addon1" required />                           

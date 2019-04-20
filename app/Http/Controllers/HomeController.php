@@ -11,6 +11,7 @@ use App\Voter;
 use App\Party;
 use App\Na_candidate;
 use App\Pa_candidate;
+use App\Constituency;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,9 @@ class HomeController extends Controller
         );
         return view('index')->with($data);
     }
+
     public function getCnic(){
+        
         $data = array(
             'header' => 'SMART BALLOT SYSTEM',
             'showHeader' => true
@@ -65,9 +68,8 @@ class HomeController extends Controller
             }
         }
 
-
         // Generating Session
-        if($voter){
+        if($voter['VOTED'] == 0){
             $userArr = array(
                 'cnic' => $voter['VOTER_CNIC'],
                 'firstName' => $voter['FIRST_NAME'],
@@ -81,7 +83,7 @@ class HomeController extends Controller
                 'province' => $voter['PROVINCE'],
                 'gender' => $voter['GENDER'],
                 'naConst' => $voter['NA_CONSTITUENCY'],
-                'psConst' => $voter['PS_CONSTITUENCY'],
+                'paConst' => $voter['PA_CONSTITUENCY'],
                 'voted' => $voter['VOTED'],
                 'fingerPrint' => $voter['FINGERPRINT'],
                 'na_parties' => $na_parties,
@@ -94,8 +96,8 @@ class HomeController extends Controller
             // redirection
             return redirect()->action('HomeController@biometric');
         }
-        else{
-            return redirect()->action('HomeController@getCnic');
+        else if($voter['VOTED'] != 0){
+            return redirect()->back()->withErrors(['msg', 'The Message']);
         }
         
     }
@@ -114,6 +116,7 @@ class HomeController extends Controller
         );
         return view('biometric')->with($data);
     }
+
     public function getDetails(Request $request){
 
         $voter = $request->session()->get('user');
@@ -129,6 +132,7 @@ class HomeController extends Controller
         );
         return view('getDetails')->with($data);
     }
+    
     public function NABallot(Request $request){
 
         if(!$request->session()->get('user'))
@@ -162,43 +166,87 @@ class HomeController extends Controller
             return $data;
         }
     }
+
     public function PABallot(Request $request){
 
         if(!$request->session()->get('user'))
             return redirect()->action('HomeController@getCnic');
+
+        else if(!$request->session()->get('NA_casted'))
+            return redirect()->action('HomeController@NABallot');
+
         
-        // $V  = DB::table('na_candidates')->where([
-        //     ['CANDIDATE_PARTY', 'HPK'],
-        //     ['CANDIDATE_CNIC', '1234567891238']
-        //     ])->increment('CANDIDATE_VOTES', 1);
-        // if($V)
-        //     return 'success';
-        // else
-        //     return 'not';
+        $partyName = $request->session()->get('NA_casted');
+        $NA_Constituency = $request->session()->get('user');
+        
+        $NA_Vote = DB::table('na_candidates')->where([
+            ['CANDIDATE_PARTY', $partyName],
+            ['NA_CONSTITUENCY', $NA_Constituency['naConst']]
+            ])->increment('CANDIDATE_VOTES', 1);
 
-        $user = $request->session()->get('user');
+        $party_Vote = Party::where('PARTY_NAME', $partyName)->increment('PARTY_VOTES', 1);
+        
+        $constituency = Constituency::where('CONSTITUENCY_NAME', $NA_Constituency['naConst'])->increment('TOTAL_VOTES', 1);
 
-        $rows = $user['pa_parties'];
+        if($NA_Vote AND $partyName AND $constituency){
+            $user = $request->session()->get('user');
 
-        $data = array(
-            'header' => 'E-BALLOT PAPER',
-            'showHeader' => false,
-            'rows' => $rows
-        );
+            $rows = $user['pa_parties'];
+    
+            $data = array(
+                'header' => 'E-BALLOT PAPER',
+                'showHeader' => false,
+                'rows' => $rows
+            );
+    
+            return view('PSBallot')->with($data);
+        }
+        else{
+            return view('NABallot')->with($data);
+        }
 
-        return view('PSBallot')->with($data);
     }
+
     public function logout(Request $request){
 
-        // Destroying the session
-        $request->session()->forget('user');
-        $request->session()->forget('NA_casted');
-        $request->session()->forget('PA_casted');
+        if(!$request->session()->get('PA_casted'))
+            return redirect()->action('HomeController@PABallot');
 
-        $data = array(
-            'header' => 'SMART BALLOT SYSTEM',
-            'showHeader' => true
-        );
-        return view('logout')->with($data);
+        $partyName = $request->session()->get('PA_casted');
+        $PA_Constituency = $request->session()->get('user');
+        
+        $PA_Vote = DB::table('pa_candidates')->where([
+            ['CANDIDATE_PARTY', $partyName],
+            ['PA_CONSTITUENCY', $PA_Constituency['paConst']]
+            ])->increment('CANDIDATE_VOTES', 1);
+
+        $party_Vote = Party::where('PARTY_NAME', $partyName)->increment('PARTY_VOTES', 1);
+    
+        $constituency = Constituency::where('CONSTITUENCY_NAME', $PA_Constituency['paConst'])->increment('TOTAL_VOTES', 1);
+        
+        if($PA_Vote AND $party_Vote AND $constituency){
+
+            $voterCnic = $request->session()->get('user');
+            $voted = Voter::where('VOTER_CNIC', $voterCnic['cnic'])->update(['VOTED' => 1]);
+
+            if($voted){
+
+                // Destroying the session
+                $request->session()->forget('user');
+                $request->session()->forget('NA_casted');
+                $request->session()->forget('PA_casted');
+
+                $data = array(
+                    'header' => 'SMART BALLOT SYSTEM',
+                    'showHeader' => true
+                );
+
+                return view('logout')->with($data);
+            }
+        }
+        else{
+            return view('PSBallot')->with($data); 
+        }
+
     }
 }

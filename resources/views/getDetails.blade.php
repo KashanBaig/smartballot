@@ -79,8 +79,13 @@
                                 </tr>
     
                                 <tr>
-                                    <td>CONSTITUENT</td>
+                                    <td>NA CONSTITUENCY</td>
                                     <td>{{ $voter['naConst'] }}</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>PA CONSTITUENCY</td>
+                                    <td>{{ $voter['paConst'] }}</td>
                                 </tr>
         
                             </table>

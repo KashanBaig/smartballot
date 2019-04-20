@@ -32,14 +32,17 @@
   <link href="{{ url($rootURL . 'assets/css/profile.css')}}" rel="stylesheet">
   <!-- Page level plugin CSS-->
   <link href="{{ url($rootURL .'assets/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
 
   <!-- Custom styles for this template-->
   <link href="{{ url($rootURL . 'assets/css/sb-admin.css')}}" rel="stylesheet">
 
   <link href="{{ url($rootURL . 'assets/css/sb-admin-ballot-paper.css') }}" rel="stylesheet">
+  
   {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"> --}}
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 
@@ -136,7 +139,7 @@
               <span>Voter List</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url ('admin/user')}}">
+            <a class="nav-link" href="{{ url ('admin/users')}}">
             <i class="fas fa-user"></i>
               <span>User</span></a>
           </li>
@@ -227,6 +230,10 @@
   <script src="{{ url($rootURL . 'assets/vendor/js/geomap.js')}}"></script>
 
   <script src="{{ url($rootURL . 'assets/vendor/js/fingerprint-script.js')}}"></script>
+
+  <script src="{{ url($rootURL . 'assets/vendor/js/sb-admin-user.js')}}"></script>
+  
+  <script src="{{ url($rootURL . 'assets/vendor/js/user.js')}}"></script>
 
 
 </body>

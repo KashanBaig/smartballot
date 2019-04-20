@@ -479,6 +479,14 @@ class AdminController extends Controller
 
     }
 
+    public function users(Request $request){
+        
+        if(!$request->session()->get('admin'))
+            return redirect()->action('AdminController@login');
+        
+        return view('user');
+    }
+
 
     // public function signUp(){
     //     $user = new User;

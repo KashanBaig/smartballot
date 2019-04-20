@@ -180,7 +180,7 @@
               <div class="app-brand text-center"><b>ENTER CNIC NUMBER</b></div>
               </div>
               <br>
-                <form action="delete" method="POST">
+                <form action="delete" id="deleteVoter" method="POST">
                   <div class="input-group">   
   
                     <input type="text" maxlength="13" onkeypress="return isCNIC(event)" pattern="^[0-9+]{5}[0-9+]{7}[0-9]{1}$" class="form-control" name="cnic" id="inputCNIC" placeholder="XXXXXXXXXXXXX" aria-describedby="basic-addon1" required>     
@@ -188,8 +188,8 @@
                   </div>
                       <div class="text-center">
                         <br>
-                        {{-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><b>DELETE</b></a> --}}
-                        <button type="submit" onclick="return confirm('Are you sure you want to Remove?');" class="btn btn-danger"><b>DELETE</b></button>
+                        <a href="#deleteEmployeeModal" type="button" class="btn btn-danger" data-toggle="modal"><b>DELETE</b></a>
+                        {{-- <button type="submit" onclick="return confirm('Are you sure you want to Remove?');" class="btn btn-danger"><b>DELETE</b></button> --}}
                       </div>
                       <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                   </form>
@@ -208,24 +208,29 @@
        <div id="deleteEmployeeModal" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="delete" method="POST">
+            <form>
               <div class="modal-header">						
-                <h4 class="modal-title">Delete Ballot Paper</h4>
+                <h4 class="modal-title">Delete Voter</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
               <div class="modal-body">					
-                <p>Are you sure you want to delete these Records?</p>
-                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                <p>Are you sure you want to delete this Record?</p>
               </div>
               <div class="modal-footer">
                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                <input type="submit" class="btn btn-danger" value="Delete">
+                <button type="button" onClick="deleteVoter()" class="btn btn-danger">Delete</button>
               </div>
               <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
             </form>
           </div>
         </div>
       </div>
+
+    <script type="text/javascript">
+      function deleteVoter(){
+        $("#deleteVoter").submit();
+      }
+    </script>
 
     <script type="text/javascript">
   

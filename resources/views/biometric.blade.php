@@ -28,25 +28,18 @@
      	
      		<div class="flex-center">
      			<div class="app-body">
-			        {{-- <div class="form-group">
-			            <label for="exampleInputEmail1" style="color: black;">PERSON NAME:</label>
-			            <input type="text" class="form-control" id="txtname" aria-describedby="basic-addon1" placeholder="PERSON NAME" required>
-			    
-                    </div> --}}
-                    {{--Template coming from the data base--}}
                     <textarea name="f_template" id="f_template" cols="35" rows="11" style="display:none;" ></textarea>
-                    {{--Template coming from the user hand--}}
                     <textarea name="f_template2" id="f_template2" cols="35" rows="11" style="display:none;" >{{ $voter['fingerPrint'] }}</textarea>
                     <button type="button" class="btn btn-warning" onclick="CallSGIFPGetData(SuccessFunc1, ErrorFunc)">Scan Finger Print</button>
-                    <button type="button" id="btnSuccess" class="btn btn-primary" onclick="matchScore(succMatch, failureFunc)">FINGER MATCHE</button>
-                    <button type="button" id="btnSuccess" class="btn btn-primary" onclick="redirect()">NEXT</button>
-			    </div>
+                    <button type="button" id="btnSuccess" class="btn btn-primary" onclick="matchScore(succMatch, failureFunc); redirect();">VERIFY FINGERPRINT</button>                
+                </div>
 		    </div>
         </form>
         {{-- @endif  	  --}}
      </div>                                                   
   </article><!-- **Home Content - End** -->
   <script type="text/javascript">
+
     function ErrorCodeToString(ErrorCode) {
             var Description;
             switch (ErrorCode) {
@@ -173,7 +166,7 @@
     
         function matchScore(succFunction, failFunction) {
             if (template_1 == "" || template_2 == "") {
-                alert("Please scan two fingers to verify!!");
+                alert("Please scan your finger to verify!!");
                 return;
             }
             var uri = "https://localhost:8443/SGIMatchScore";
@@ -199,13 +192,16 @@
             xmlhttp.open("POST", uri, false);
             xmlhttp.send(params);
         }
-    
+        
+        var score;
         function succMatch(result) {
             //var idQuality = document.getElementById("quality").value;
             var idQuality = 100;
             if (result.ErrorCode == 0) {
-                if (result.MatchingScore >= idQuality)
+                if (result.MatchingScore >= idQuality){
                     alert("MATCHED ! (" + result.MatchingScore + ")");
+                    score = result.MatchingScore;
+                }    
                 else
                     alert("NOT MATCHED ! (" + result.MatchingScore + ")");
             }
@@ -216,6 +212,13 @@
     
         function failureFunc(error) {
             alert ("On Match Process, failure has been called");
+        }
+
+        function redirect(){
+            if(score>=100 || score<=199)
+                location.href = root + 'details';
+            else
+                location.href = root + 'bio';
         }
     
     </script>

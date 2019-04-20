@@ -48,7 +48,7 @@
 
                       <div class="col-xs-12 col-sm-9">
                           <h4 class="blue">
-                              <span class="middle">Hamza Alam</span>
+                              <span class="middle">ADMIN</span>
                           </h4>
 
                           <div class="profile-user-info">
@@ -56,7 +56,7 @@
                                   <div class="profile-info-name"> Username </div>
 
                                   <div class="profile-info-value">
-                                      <span>Hamzaalam100</span>
+                                      <span>admin100</span>
                                   </div>
                               </div>
 
@@ -108,7 +108,7 @@
                   </div><!-- /.row -->
 
                   <div class="space-20"></div>
-
+                    <br>
                   <div class="row">
                       <div class="col-xs-12 col-sm-6">
                           <div class="widget-box transparent">
