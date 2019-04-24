@@ -16,7 +16,7 @@
       </div>
       <div class="col-lg-2">
         
-        <button type="button" id="btnSuccess" class="btn btn-success"  onclick="goToPS()">Proceed Goto PS</button>
+        <button type="button" id="btnSuccess" class="btn btn-success position-absolute"  onclick="goToPS()">Proceed Goto PS</button>
         <script>
             document.querySelector('#btnSuccess').disabled = false;
           </script>

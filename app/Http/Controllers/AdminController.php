@@ -407,8 +407,23 @@ class AdminController extends Controller
 
         if(!$request->session()->get('admin'))
             return redirect()->action('AdminController@login');
+        
+        $partyArrName = array();
+        $partyArrVotes = array();
 
-        return view('result');
+        $parties = Party::select('PARTY_NAME', 'PARTY_VOTES')->get();
+        
+        foreach($parties as $party) {
+            array_push($partyArrName,$party['PARTY_NAME']);
+            array_push($partyArrVotes, $party['PARTY_VOTES']);
+        }
+        
+        $data = array(
+            'partyArrName' => $partyArrName,
+            'partyArrVotes' => $partyArrVotes
+        );
+        
+        return view('result')->with($data);
     }
 
     public function logout(Request $request){

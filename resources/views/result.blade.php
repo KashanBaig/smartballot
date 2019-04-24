@@ -1,114 +1,120 @@
 @extends('layout.admin')
 
 @section('content')
-    <!-- Page Content -->
-      <!--Bar chart Horizontal-->
-      <div class="row">
-            <div class="col-lg-12">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <i class="fas fa-chart-bar"></i>
-                  Bar Chart Horizontal Example</div>
-                <div class="card-body">
-  
-              <div class="col-md-2"> PTI </div>
-                <div class="col-md-12">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" 
-                        aria-valuemax="100" style="width:70%"> 70% </div>
-                    </div>
+     <!--Bar chart and pie chart-->
+    <div class="column">
+          <div class="col-lg-12">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-chart-bar"></i>
+                Bar Chart Result</div>
+              <div class="card-body">
+                <canvas id="myBarChart" width="600" height="400"></canvas>
               </div>
               
-              <br>
-              <div class="col-md-2"> PPPP </div>
-                <div class="col-md-12">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" 
-                        aria-valuemax="100" style="width:40%"> 40% </div>
-                    </div>
-              </div>
-  
-              <br>
-              <div class="col-md-2"> PMLN </div>
-                <div class="col-md-12">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" 
-                        aria-valuemax="100" style="width:60%"> 60% </div>
-                    </div>
-              </div>
-  
-              <br>
-              <div class="col-md-2"> MQM </div>
-                <div class="col-md-12">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" 
-                        aria-valuemax="100" style="width:50%"> 50% </div>
-                    </div>
-              </div>
-  
-  
-              <br>
-              <div class="col-md-2"> PSP </div>
-                <div class="col-md-12">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" 
-                        aria-valuemax="100" style="width:10%"> 10% </div>
-                    </div>
-              </div>
-  
-              <br>
-              <div class="col-md-2"> TLP </div>
-                <div class="col-md-12">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" 
-                        aria-valuemax="100" style="width:20%"> 20% </div>
-                    </div>
-              </div>
-  
-  
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-              </div>
             </div>
+          </div>
           
-          </div>
-  
-  
-  
-       <!--Bar chart and pie chart-->
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <i class="fas fa-chart-bar"></i>
-                  Bar Chart Example</div>
-                <div class="card-body">
-                  <canvas id="myBarChart" width="100%" height="50"></canvas>
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+    <div class="col-lg-12">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-chart-pie"></i>
+                Pie Chart Result</div>
+              <div class="card-body">
+                <div id="donutchart" style="width: 900px; height: 500px; margin-left: 100px"></div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <i class="fas fa-chart-pie"></i>
-                  Pie Chart Example</div>
-                <div class="card-body">
-                  <canvas id="myPieChart" width="100%" height="100"></canvas>
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-              </div>
+              
             </div>
           </div>
-  
-  <!--END Bar chart and pie chart-->		 
-       
-  </div>
-  <!-- /.container-fluid -->
+</div>
+<!-- /.container-fluid -->
 
-  {{-- <script src="{{ url('./assets/vendor/chart.js/Chart.min.js')}}"></script>
-  <script src="{{ url('./assets/js/demo/chart-bar-demo.js')}}"></script>
-  <script src="{{ url('./assets/js/demo/chart-pie-demo.js')}}"></script> --}}
-  
+  {{-- <script src="{{ url('http://localhost/Smart_Ballot_System/public/assets/vendor/chart.js/Chart.min.js')}}"></script> --}}
+
+<script type="text/javascript">
+
+  var partynames = <?php echo json_encode($partyArrName);  ?>;
+  var partyvotes = <?php echo json_encode($partyArrVotes);  ?>;
+
+  // Set new default font family and font color to mimic Bootstrap's default styling
+  Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+  Chart.defaults.global.defaultFontColor = '#292b2c';
+
+  // Bar Chart Example
+  let ctx = document.getElementById("myBarChart");
+  let myLineChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+      labels: partynames,
+      datasets: [{
+        data: partyvotes,
+        label: "Votes",
+        backgroundColor: "rgba(2,117,216,1)",
+        borderColor: "rgba(2,117,216,1)",
+      }],
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          time: {
+            unit: 'date'
+          },
+          gridLines: {
+            display: true
+          },
+          ticks: {
+            maxTicksLimit: 9
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            min: 5,
+            max: 20000000,
+            maxTicksLimit: 15
+          },
+          gridLines: {
+            display: true
+          }
+        }],
+      },
+      legend: {
+        display: true
+      }
+    }
+  });
+
+
+
+  //end of bar chart
+
+
+  // //PIE CHART
+
+  google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            [partynames, partyvotes],
+          <?php
+            foreach($partyArrName as $key => $partyName){
+              echo "['".$partyName."',".$partyArrVotes[$key]."],";
+            }
+
+          ?>
+
+          ]);
+
+
+          var options = {
+            title: 'ELECTION RESULTS',
+            pieHole: 0.4,
+          };
+
+          var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+          chart.draw(data, options);
+        }
+
+</script>
     
 @endsection

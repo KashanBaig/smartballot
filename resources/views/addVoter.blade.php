@@ -41,7 +41,7 @@
       <div class="well"> 
         <div class="form-group">
         <label for="DOB">Date of Birth</label>
-        <input type="date" name="dob" class="form-control" id="inputDOB" placeholder="Date of Birth" onkeyup="btnDisable()" required>
+        <input type="date" name="dob" class="form-control" min="01-01-2002" id="inputDOB" placeholder="Date of Birth" onkeyup="btnDisable()" required>
       </div>
     </div>
     <div class="well"> 

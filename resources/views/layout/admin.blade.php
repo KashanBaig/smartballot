@@ -1,26 +1,25 @@
 <?php 
     $rootURL = 'http://localhost/Smart_Ballot_System/public/';
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>SB Admin - Blank Page</title>
-
   
-  <!-- gauge Plugins JavaScript-->
-  <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-  
-  <script type='text/javascript' src='http://www.google.com/jsapi'></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>SB Admin - Blank Page</title>
+    
+    
+    <!-- gauge Plugins JavaScript-->
+    <script src="{{ url($rootURL . 'assets/vendor/chart.js/Chart.min.js')}}"></script>
+  {{-- <script type='text/javascript' src='http://www.google.com/jsapi'></script> --}}
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
@@ -198,7 +197,7 @@
       </div>
     </div>
   </div>
-
+  
   <!-- Bootstrap core JavaScript-->
   <script src="{{ url($rootURL . 'assets/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{ url($rootURL . 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -217,11 +216,10 @@
   <script src="{{ url($rootURL . 'assets/vendor/js/demo/datatables-demo.js')}}"></script>
 
   <!-- Page level plugin JavaScript-->
-  <script src="{{ url($rootURL . 'assets/vendor/chart.js/Chart.min.js')}}"></script>
           
-  <script src="{{ url($rootURL . 'assets/vendor/js/demo/chart-bar-demo.js')}}"></script>
+  {{-- <script src="{{ url($rootURL . 'assets/vendor/js/demo/chart-bar-demo.js')}}"></script> --}}
   
-  <script src="{{ url($rootURL . 'assets/vendor/js/demo/chart-pie-demo.js')}}"></script>
+  {{-- <script src="{{ url($rootURL . 'assets/vendor/js/demo/chart-pie-demo.js')}}"></script> --}}
 
   <script src="{{ url($rootURL . 'assets/vendor/js/sb-admin-ballot-paper.js')}}"></script>
 
@@ -234,7 +232,6 @@
   <script src="{{ url($rootURL . 'assets/vendor/js/sb-admin-user.js')}}"></script>
   
   <script src="{{ url($rootURL . 'assets/vendor/js/user.js')}}"></script>
-
 
 </body>
 
